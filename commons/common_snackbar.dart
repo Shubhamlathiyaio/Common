@@ -1,4 +1,4 @@
-import 'package:api/commons/common_text.dart';
+import 'package:billing/commons/common_text.dart';
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names

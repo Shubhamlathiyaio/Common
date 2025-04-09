@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mi_card_flutter/commons/common_spacing.dart';
-import 'package:mi_card_flutter/commons/common_text.dart';
+import 'package:billing/commons/common_spacing.dart';
+import 'package:billing/commons/common_text.dart';
 
 enum IconDirection { top, bottom, left, right }
 
@@ -84,11 +84,13 @@ class CommonButton extends StatelessWidget {
           horizontal: horizontalPadding, // Apply horizontal padding
         ),
         decoration: BoxDecoration(
-          color: gradient == null ? backgroundColor ?? theme.primaryColor : null,
+          color:
+              gradient == null ? backgroundColor ?? theme.primaryColor : null,
           gradient: gradient,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        child: iconDirection == IconDirection.top || iconDirection == IconDirection.bottom
+        child: iconDirection == IconDirection.top ||
+                iconDirection == IconDirection.bottom
             ? Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
