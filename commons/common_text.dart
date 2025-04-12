@@ -14,7 +14,7 @@ class CommonText extends StatelessWidget {
     Key? key,
     required this.data,
     this.fontSize,
-    this.fontWeight = FontWeight.bold, // 🎯 Default to bold
+    this.fontWeight = FontWeight.bold,
     this.fontColor,
     this.style,
     this.textAlign,
@@ -24,28 +24,23 @@ class CommonText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultStyle = Theme.of(context).textTheme.bodyMedium;
+    final defaultStyle = Theme.of(context).textTheme.bodyMedium ?? const TextStyle();
+
+    final effectiveStyle = (style ?? defaultStyle).copyWith(
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: fontColor,
+    );
 
     return Text(
       data,
-      style: style?.copyWith(
-            fontSize: fontSize ?? style?.fontSize ?? defaultStyle?.fontSize,
-            fontWeight: fontWeight ?? style?.fontWeight ?? defaultStyle?.fontWeight,
-            color: fontColor ?? style?.color ?? defaultStyle?.color,
-          ) ??
-          TextStyle(
-            fontSize: fontSize ?? defaultStyle?.fontSize,
-            fontWeight: fontWeight ?? defaultStyle?.fontWeight,
-            color: fontColor ?? defaultStyle?.color,
-          ),
+      style: effectiveStyle,
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
     );
   }
 }
-
-
 
 
 // AI Prompt to Add another functionaliti 👇

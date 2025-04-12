@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:billing/commons/common_spacing.dart';
-import 'package:billing/commons/common_text.dart';
+import 'package:billing/resources/commons/common_spacing.dart';
+import 'package:billing/resources/commons/common_text.dart';
 
 enum IconDirection { top, bottom, left, right }
 

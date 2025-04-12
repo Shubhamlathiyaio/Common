@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CommonTextField extends StatelessWidget {
   final dynamic label; // Accepts String or Widget
-  final String? hintText; // 🔹 Added hintText
+  final String? hintText;
   final IconData? prefixIcon;
   final bool isPassword;
   final Color borderColor;
@@ -19,7 +19,7 @@ class CommonTextField extends StatelessWidget {
   const CommonTextField({
     Key? key,
     this.label,
-    this.hintText, // 🔹 Constructor
+    this.hintText,
     this.prefixIcon,
     this.isPassword = false,
     this.borderColor = Colors.black26,
@@ -36,6 +36,14 @@ class CommonTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final labelText = label is String ? label : null;
+    final labelWidget = label is Widget ? label : null;
+
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(borderRadius),
+      borderSide: BorderSide(color: borderColor, width: borderWidth),
+    );
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: horizontalPadding ?? 0,
@@ -49,23 +57,16 @@ class CommonTextField extends StatelessWidget {
         textCapitalization: textCapitalization,
         onChanged: onChanged,
         decoration: InputDecoration(
-          labelText: label is String ? label : null,
-          label: label is Widget ? label : null,
-          hintText: hintText, // 🔹 Set hintText here
-          prefixIcon:
-              prefixIcon != null ? Icon(prefixIcon, color: textColor) : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide(color: borderColor, width: borderWidth),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide(color: borderColor, width: borderWidth),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide:
-                BorderSide(color: borderColor, width: borderWidth + 0.5),
+          labelText: labelText,
+          label: labelWidget,
+          hintText: hintText,
+          prefixIcon: prefixIcon != null
+              ? Icon(prefixIcon, color: textColor)
+              : null,
+          border: border,
+          enabledBorder: border,
+          focusedBorder: border.copyWith(
+            borderSide: border.borderSide.copyWith(width: borderWidth + 0.5),
           ),
         ),
       ),
